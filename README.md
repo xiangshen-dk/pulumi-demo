@@ -1,1 +1,1 @@
-# pulumi-demo
+# Pulumi CI/CD Demo
