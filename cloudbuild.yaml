@@ -1,0 +1,17 @@
+steps:
+- name: 'gcr.io/cloud-builders/yarn'
+  entrypoint: /bin/sh
+  args:
+  - '-c'
+  - 'chmod +x *.sh && ./pulumi.sh'
+  secretEnv: ['PULUMI_CONFIG_PASSPHRASE']
+  env:
+  - 'BUILD_TYPE=$_BUILD_TYPE'
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'STACK=$_STACK'
+substitutions:
+    _STACK: test
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_NUMBER/secrets/PULUMI_CONFIG_PASSPHRASE/versions/1
+    env: 'PULUMI_CONFIG_PASSPHRASE'
